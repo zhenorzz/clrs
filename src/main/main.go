@@ -6,5 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println(mysort.Merge([]int{1,3,5,7,2,4,6,8},0,3,7))
+	fmt.Println(int(^uint(0)>>1))
+	fmt.Println(mysort.MergeSort([]int{3,41,52,26,38,57,9,49},0,7))
 }

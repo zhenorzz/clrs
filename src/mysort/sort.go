@@ -75,10 +75,10 @@ func SelectSort(s []int) []int {
 	}
 	return s
 }
-
+//s, 0, 1, 3
 func Merge(s []int, p, q, r int) []int {
-	n1 := q - p + 1
-	n2 := r - q
+	n1 := q - p + 1 //2
+ 	n2 := r - q //2
 	L := make([]int, n1+1)
 	R := make([]int, n2+1)
 	for i := 0; i < n1; i++ {
@@ -87,12 +87,11 @@ func Merge(s []int, p, q, r int) []int {
 	for i := 0; i < n2; i++ {
 		R[i] = s[q + i + 1]
 	}
-
-	L[n1] = 0
-	R[n2] = 0
 	i := 0
 	j := 0
-	for k := p; k < r; k++ {
+	L[n1] = int(^uint(0)>>1)
+	R[n2] = int(^uint(0)>>1)
+	for k := p; k <= r; k++ {
 		if L[i] <= R[j] {
 			s[k] = L[i]
 			i++
@@ -101,5 +100,18 @@ func Merge(s []int, p, q, r int) []int {
 			j++
 		}
 	}
+
 	return s
 }
+
+func MergeSort(s []int, p, r int) []int {
+	if p < r {
+		var q = int (p + r) / 2
+		MergeSort(s, p, q)
+		MergeSort(s, q+1, r)
+		Merge(s, p, q, r)
+	}
+	return s
+}
+
+// s,0,3  s,0,1 s,2,3        s,0,0
