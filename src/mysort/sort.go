@@ -1,7 +1,5 @@
 package mysort
 
-import "fmt"
-
 //插入排序 非降序
 func InsertionAsc(s []int) []int {
 	for j := 1; j<len(s); j++ {
@@ -77,6 +75,17 @@ func BinaryFind(s []int, v int) (int, bool){
 	}
 	return n,false
 }
+
+//2.3-7
+func IsExistSum(s []int, x int) bool {
+	length := len(s)
+	for i := 0; i < length; i++ {
+		if _, ok := BinaryFind(s, x-s[i]); ok==true {
+			return true
+		}
+	}
+	return false
+}
 //相加
 func AddBytes(a []byte, b []byte) []byte{
 	c := make([]byte,len(a)+1)
@@ -128,7 +137,6 @@ func Merge(s []int, p, q, r int) []int {
 	}
 	i := 0
 	j := 0
-	fmt.Println(p,q,r)
 	for k := p; k <= r; k++ {
 		if j >= n2 {
 			s[k] = L[i]
@@ -162,3 +170,15 @@ func MergeSort(s []int, p, r int) []int {
 	return s
 }
 
+func Bubble(s []int) []int {
+	for i := 0; i<len(s)-2; i++ {
+		for j := len(s)-1; j > i+1; j-- {
+			if s[j] < s[j-1]  {
+				t := s[j-1]
+				s[j-1] = s[j]
+				s[j] =t
+			}
+		}
+	}
+	return s
+}

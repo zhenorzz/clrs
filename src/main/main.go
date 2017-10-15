@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(mysort.RecursionInsertion([]int{3,41,52,26,38,57,9,49},7))
+	fmt.Println(mysort.MergeSort([]int{3,26,41,49,38,52,57,9},0,7))
 }
