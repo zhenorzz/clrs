@@ -1,5 +1,7 @@
 package mysort
 
+import "fmt"
+
 //插入排序 非降序
 func InsertionAsc(s []int) []int {
 	for j := 1; j<len(s); j++ {
@@ -28,6 +30,22 @@ func InsertionDesc(s []int) []int {
 	return s
 }
 
+//递归插入排序 非降序
+func RecursionInsertion(s []int,n int) []int {
+	if n < 0 {
+	} else {
+		RecursionInsertion(s, n-1)
+		for i := 0; i < n; i++ {
+			if s[i] > s[n] {
+				t := s[n]
+				s[n] = s[i]
+				s[i] = t
+			}
+		}
+
+	}
+	return s
+}
 //find
 func Find(s []int, v int) int{
 	for i := 0; i<len(s); i++{
@@ -37,7 +55,28 @@ func Find(s []int, v int) int{
 	}
 	return 0
 }
-
+//二分查找
+func BinaryFind(s []int, v int) (int, bool){
+	length := len(s)
+	n := length/2
+	for n > 0 {
+		if s[n] > v {
+			if length-1 == n {
+				return n,false
+			}
+			length = n
+			n /= 2
+		} else if  s[n] < v{
+			if length-1 == n {
+				return n,false
+			}
+			n = (length+n)/2
+		} else {
+			return n,true
+		}
+	}
+	return n,false
+}
 //相加
 func AddBytes(a []byte, b []byte) []byte{
 	c := make([]byte,len(a)+1)
@@ -79,8 +118,8 @@ func SelectSort(s []int) []int {
 func Merge(s []int, p, q, r int) []int {
 	n1 := q - p + 1 //2
  	n2 := r - q //2
-	L := make([]int, n1+1)
-	R := make([]int, n2+1)
+	L := make([]int, n1)
+	R := make([]int, n2)
 	for i := 0; i < n1; i++ {
 		L[i] = s[p + i]
 	}
@@ -89,9 +128,18 @@ func Merge(s []int, p, q, r int) []int {
 	}
 	i := 0
 	j := 0
-	L[n1] = int(^uint(0)>>1)
-	R[n2] = int(^uint(0)>>1)
+	fmt.Println(p,q,r)
 	for k := p; k <= r; k++ {
+		if j >= n2 {
+			s[k] = L[i]
+			i++
+			continue
+		}
+		if i>= n1 {
+			s[k] = R[j]
+			j++
+			continue
+		}
 		if L[i] <= R[j] {
 			s[k] = L[i]
 			i++
@@ -114,4 +162,3 @@ func MergeSort(s []int, p, r int) []int {
 	return s
 }
 
-// s,0,3  s,0,1 s,2,3        s,0,0
