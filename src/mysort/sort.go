@@ -125,38 +125,34 @@ func SelectSort(s []int) []int {
 }
 //s, 0, 1, 3
 func Merge(s []int, p, q, r int) []int {
-	n1 := q - p + 1 //2
- 	n2 := r - q //2
-	L := make([]int, n1)
-	R := make([]int, n2)
-	for i := 0; i < n1; i++ {
-		L[i] = s[p + i]
-	}
-	for i := 0; i < n2; i++ {
-		R[i] = s[q + i + 1]
-	}
-	i := 0
-	j := 0
-	for k := p; k <= r; k++ {
-		if j >= n2 {
-			s[k] = L[i]
-			i++
-			continue
-		}
-		if i>= n1 {
-			s[k] = R[j]
+	temp := make([]int, len(s))
+	i := p
+	j := q+1
+	k := 0
+	for i <= q && j <= r {
+		if s[i] > s[j] {
+			temp[k] = s[j]
+			k++
 			j++
-			continue
-		}
-		if L[i] <= R[j] {
-			s[k] = L[i]
-			i++
 		} else {
-			s[k] = R[j]
-			j++
+			temp[k] = s[i]
+			k++
+			i++
 		}
 	}
-
+	for i <= q {
+		temp[k] = s[i]
+		k++
+		i++
+	}
+	for j <= r {
+		temp[k] = s[j]
+		k++
+		j++
+	}
+	for i = 0; i < k;i++ {
+		s[p+i] = temp[i]
+	}
 	return s
 }
 
