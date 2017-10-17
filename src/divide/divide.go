@@ -48,3 +48,26 @@ func FindMaximumSubarry(A []int, low, high int) (int, int, int)  {
 		}
 	}
 }
+
+//暴力求解子数组问题
+func FindIODate(A []int) (int, int, int) {
+	length := len(A)
+	sum := 0
+	low := 0
+	high := 0
+	for i := 0; i < length; i++ {
+		temp := 0
+		j := i+1
+
+		for j < length - 1  {
+			temp += A[j] - A[j-1]
+			if temp > sum {
+				sum = temp
+				low = i
+				high =j
+			}
+			j++
+		}
+	}
+	return low, high, sum
+}
