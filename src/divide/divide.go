@@ -49,7 +49,9 @@ func FindMaximumSubarry(A []int, low, high int) (int, int, int)  {
 	}
 }
 
-//暴力求解子数组问题
+//暴力求解日期
+//	fmt.Println(divide.FindIODate([]int{100,113,110,85,105,102,86,63,81,101,94,106,101,79,94,90,97}))
+
 func FindIODate(A []int) (int, int, int) {
 	length := len(A)
 	sum := 0
@@ -67,6 +69,51 @@ func FindIODate(A []int) (int, int, int) {
 				high =j
 			}
 			j++
+		}
+	}
+	return low, high, sum
+}
+//暴力求解子数组问题
+func ForceMaximumSubarry(A []int) (int, int, int) {
+	length := len(A)
+	sum := 0
+	low := 0
+	high := 0
+	for i := 0; i < length; i++ {
+		temp := 0
+		j := i
+
+		for j < length  {
+			temp += A[j]
+			if temp > sum {
+				sum = temp
+				low = i
+				high =j
+			}
+			j++
+		}
+	}
+	return low, high, sum
+}
+
+//暴力求解子数组问题
+func LineMaximumSubarry(A []int) (int, int, int) {
+	length := len(A)
+	sum := A[0]
+	low := 0
+	high := 0
+	temp := 0
+	for i := 0; i < length; i++ {
+		if temp == 0 {
+			low = i
+		}
+		temp += A[i]
+		if temp > sum {
+			sum = temp
+			high = i
+		}
+		if temp < 0 {
+			temp = 0
 		}
 	}
 	return low, high, sum
