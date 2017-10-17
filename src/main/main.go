@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"mysort"
+	"divide"
 )
 
 func main() {
-	fmt.Println(mysort.MergeSort([]int{3,26,41,49,38,52,57,9},0,7))
+	fmt.Println(divide.FindMaximumSubarry([]int{-13,-3,-25,-20,-3,-16,-23,-18,-20,-7,-12,-5,-22,-15,-4,-7},0,13))
 }
