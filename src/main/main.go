@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(matrix.Strassen([][]int{{1,2},{3,4}}, [][]int{{1,2},{3,4}},2))
+	fmt.Println(matrix.ComplexMultiply(complex(1,2),complex(3,4)))
 }

@@ -17,6 +17,7 @@ func SquareMatrixMultiply(A [][]int, B [][]int) [][]int {
 	return C
 }
 
+//	fmt.Println(matrix.Strassen([][]int{{1,2},{3,4}}, [][]int{{1,2},{3,4}},2))
 func Strassen(A [][]int, B [][]int, size int) [][]int {
 	if size == 1 {
 		matrixMul := make([][]int, 1)
@@ -166,4 +167,17 @@ func matrixSub(size int, A [][]int, B [][]int, C *[][]int) {
 			(*C)[i][j] = A[i][j] - B[i][j]
 		}
 	}
+}
+
+//复数相乘
+func ComplexMultiply(x complex64, y complex64) complex64 {
+	a := real(x)
+	b := imag(x)
+	c := real(y)
+	d := imag(y)
+	C1 := a * d
+	C2 := b * c
+	C3 := (a+b)*(c-d)
+    return complex(C3+C1-C2, C1+C2)
+
 }
