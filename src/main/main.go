@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(matrix.SquareMatrixMultiply([][]int{{1,2,3},{2,4,1}}, [][]int{{1,2,3},{2,4,1}}))
+	fmt.Println(matrix.Strassen([][]int{{1,2},{3,4}}, [][]int{{1,2},{3,4}},2))
 }
