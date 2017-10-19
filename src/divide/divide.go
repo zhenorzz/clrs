@@ -143,7 +143,7 @@ func MongeDivide(A [][]int, m, n int) []int {
 		odd[i] = make([]int, n)
 		odd[i] = A[2 * i]
 	}
-	pos := DivideMonge(even,evenLength,n)
+	pos := MongeDivide(even,evenLength,n)
 	pos = FindOddMin(odd, oddLength, pos)
 	
 	return pos
