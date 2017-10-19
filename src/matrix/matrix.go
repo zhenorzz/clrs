@@ -2,7 +2,6 @@ package matrix
 
 import (
 	"fmt"
-	"imath"
 )
 
 //矩阵乘积
