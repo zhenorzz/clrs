@@ -1,5 +1,10 @@
 package matrix
 
+import (
+	"fmt"
+	"imath"
+)
+
 //矩阵乘积
 //fmt.Println(matrix.SquareMatrixMultiply([][]int{{1,2,3},{2,4,1}}, [][]int{{1,2,3},{2,4,1}}))
 func SquareMatrixMultiply(A [][]int, B [][]int) [][]int {
@@ -91,7 +96,6 @@ func Strassen(A [][]int, B [][]int, size int) [][]int {
 				B22[i][j] = B[i + size][j + size]
 			}
 		}
-
 		//M1 = (A11 + A22) x (B11 + B22)
 		matrixAdd(size, A11, A22, &AA)
 		matrixAdd(size, B11, B22, &BB)
@@ -180,4 +184,19 @@ func ComplexMultiply(x complex64, y complex64) complex64 {
 	C3 := (a+b)*(c-d)
     return complex(C3+C1-C2, C1+C2)
 
+}
+
+//	fmt.Println(matrix.MongeC([][]int{{37,23,22,32},{21,6,7,10},{53,34,30,31},{32,13,9,6},{43,21,15,8}}))
+func IsMonge(A [][]int) bool {
+	m := len(A)
+	n := len(A[0])
+	for i := 0; i < m-1; i++ {
+		for j := 0; j < n-1; j++ {
+			fmt.Println(A[i][j],A[i+1][j+1],A[i][j+1],A[i+1][j],i,j)
+			if A[i][j]+A[i+1][j+1] > A[i][j+1]+A[i+1][j] {
+				return false
+			}
+		}
+	}
+	return true
 }
