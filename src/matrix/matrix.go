@@ -2,6 +2,7 @@ package matrix
 
 import (
 	"fmt"
+	"imath"
 )
 
 //矩阵乘积
@@ -198,4 +199,76 @@ func IsMonge(A [][]int) bool {
 		}
 	}
 	return true
+}
+
+//fmt.Println(matrix.MongeDivide([][]int{{37,23,22,32},{21,6,5,10},{53,34,30,31},{32,13,9,6},{43,21,15,8}},5,4))
+func MongeDivide(A [][]int, m, n int) []int {
+	if m == 1 {
+		temp := imath.MaxInt
+		tempPos := 0
+		for i := 0; i < n; i++ {
+			if temp > A[0][i] {
+				tempPos = i
+			}
+		}
+		return []int{tempPos}
+	}
+
+	evenLength := m>>1
+	oddLength := m-evenLength
+	even := make([][]int, evenLength)
+	odd := make([][]int, oddLength)
+	for i := 0; i < evenLength; i++ {
+		even[i] = make([]int, n)
+		even[i] = A[2 * i +1]
+	}
+	for i := 0; i<oddLength; i++ {
+		odd[i] = make([]int, n)
+		odd[i] = A[2 * i]
+	}
+	pos := MongeDivide(even,evenLength,n)
+	pos = FindOddMin(odd, oddLength, pos)
+
+	return pos
+}
+
+func FindOddMin(A [][]int, m int, pos []int) []int {
+	lengthPos := len(pos)
+	tempPos := 0
+	temp := imath.MaxInt
+	posBack := make([]int, lengthPos+m)
+	if m > lengthPos {
+		for i := 0; i < m-1; i++ {
+			for j := 0; j <= pos[i]; j++ {
+				if A[i][j] < temp {
+					temp = A[i][j]
+					tempPos = j
+				}
+			}
+			posBack[2*i] = tempPos
+			posBack[2*i+1] = pos[i]
+		}
+		temp = imath.MaxInt
+		for i := pos[lengthPos-1]; i < 4; i++ {
+			if A[m-1][i] < temp {
+				temp = A[m-1][i]
+				tempPos = i
+			}
+		}
+		posBack[lengthPos+m-1] = tempPos
+
+	} else {
+		for i := 0; i < m; i++ {
+			for j := 0; j <= pos[i]; j++ {
+				if A[i][j] < temp {
+					temp = A[i][j]
+					tempPos = j
+				}
+			}
+			posBack[i] = tempPos
+			posBack[i+1] = pos[i]
+		}
+	}
+
+	return posBack
 }
