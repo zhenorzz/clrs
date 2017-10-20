@@ -3,6 +3,7 @@ package random
 import (
 	"time"
 	"math/rand"
+	"math"
 )
 
 func Randomize(min, max int) int {
@@ -20,6 +21,16 @@ func RandomizeInPlace(A []int) []int {
 	for i := 0; i < n; i++ {
 		randomIndex = Randomize(i, n)
 		A[i], A[randomIndex] = swap(A[i], A[randomIndex])
+	}
+	return A
+}
+
+
+func PermuteBySorting(A []int) []int {
+	n := len(A)
+	P := make([]int, n)
+	for i := 0; i < n; i++ {
+		P[i] = Randomize(i, n * n * n)
 	}
 	return A
 }
