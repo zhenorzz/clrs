@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"random"
+	"heaps"
 )
 
 func main() {
-	fmt.Println(random.RandomizeInPlace([]int{2,4,1,3}))
+	fmt.Println(heaps.MaxHeapify([]int{27,17,14,6,13,10,1,5,7,12},3))
 }
