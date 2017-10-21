@@ -1,5 +1,10 @@
 package heaps
 
+type Stack struct {
+	Heaps []int
+	Size int
+	Length int
+}
 func Left(i int) int {
 	return (i<<1) + 1
 }
@@ -7,68 +12,71 @@ func Left(i int) int {
 func Right(i int) int {
 	return (i<<1) + 2
 }
-
-func MaxHeapify(A []int, i int) []int {
-	length := len(A)
+//var stack = heaps.Stack{[]int{27,17,14,6,13,10,1,5,7,12}, 10, 10}
+//stack.MaxHeapify(3)
+func (stack *Stack)MaxHeapify(i int) {
 	left := Left(i)
 	largest := i
-	if length > left && A[left] > A[i] {
+	if stack.Size > left && stack.Heaps[left] > stack.Heaps[i] {
 		largest = left
 	}
 	right := Right(i)
-	if length > right && A[right] > A[largest] {
+	if stack.Size > right && stack.Heaps[right] > stack.Heaps[largest] {
 		largest = right
 	}
 	if largest != i {
-		temp := A[i]
-		A[i] = A[largest]
-		A[largest] = temp
-		MaxHeapify(A, largest)
+		temp := stack.Heaps[i]
+		stack.Heaps[i] = stack.Heaps[largest]
+		stack.Heaps[largest] = temp
+		stack.MaxHeapify(largest)
 	}
-	return A
 }
 
-func MaxHeapifyLoop(A []int, i int) []int {
-	length := len(A)
+//var stack = heaps.Stack{[]int{27,17,14,6,13,10,1,5,7,12}, 10, 10}
+//stack.MaxHeapifyLoop(3)
+func (stack *Stack)MaxHeapifyLoop(i int) {
 	largest := i
 	for  {
 		left := Left(largest)
-		if length > left && A[left] > A[largest] {
+		if stack.Size > left && stack.Heaps[left] > stack.Heaps[largest] {
 			largest = left
 		}
 		right := Right(largest)
-		if length > right && A[right] > A[largest] {
+		if stack.Size > right && stack.Heaps[right] > stack.Heaps[largest] {
 			largest = right
 		}
-		if largest != i {
-			temp := A[i]
-			A[i] = A[largest]
-			A[largest] = temp
-			i = largest
-		} else {
+		if largest == i {
 			break
 		}
+		temp := stack.Heaps[i]
+		stack.Heaps[i] = stack.Heaps[largest]
+		stack.Heaps[largest] = temp
+		i = largest
 	}
-
-	return A
 }
 
-func MinHeapify(A []int, i int) []int {
-	length := len(A)
+func (stack *Stack)MinHeapify(i int) {
 	left := Left(i)
 	largest := i
-	if length > left && A[left] < A[i] {
+	if stack.Size > left && stack.Heaps[left] < stack.Heaps[i] {
 		largest = left
 	}
 	right := Right(i)
-	if length > right && A[right] < A[largest] {
+	if stack.Size > right && stack.Heaps[right] < stack.Heaps[largest] {
 		largest = right
 	}
 	if largest != i {
-		temp := A[i]
-		A[i] = A[largest]
-		A[largest] = temp
-		MaxHeapify(A, largest)
+		temp := stack.Heaps[i]
+		stack.Heaps[i] = stack.Heaps[largest]
+		stack.Heaps[largest] = temp
+		stack.MinHeapify(largest)
 	}
-	return A
+}
+
+//var stack = heaps.Stack{[]int{5,3,17,10,84,19,6,22,9}, 9, 9}
+//stack.BuildMaxHeap()
+func (stack *Stack)BuildMaxHeap() {
+	for i := stack.Length>>1 - 1; i >= 0 ; i-- {
+		stack.MaxHeapify(i)
+	}
 }
