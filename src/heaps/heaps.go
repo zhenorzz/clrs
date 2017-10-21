@@ -5,6 +5,7 @@ type Stack struct {
 	Size int
 	Length int
 }
+
 func Left(i int) int {
 	return (i<<1) + 1
 }
@@ -78,5 +79,15 @@ func (stack *Stack)MinHeapify(i int) {
 func (stack *Stack)BuildMaxHeap() {
 	for i := stack.Length>>1 - 1; i >= 0 ; i-- {
 		stack.MaxHeapify(i)
+	}
+}
+//var stack = heaps.Stack{[]int{5,3,17,10,84,19,6,22,9}, 9, 9}
+//stack.HeapSort()
+func (stack *Stack)HeapSort() {
+	stack.BuildMaxHeap()
+	for i := stack.Size-1; i >= 1; i-- {
+		stack.Heaps[0], stack.Heaps[i] = stack.Heaps[i], stack.Heaps[0]
+		stack.Size--
+		stack.MaxHeapify(0)
 	}
 }
