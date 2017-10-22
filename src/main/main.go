@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	var stack = heaps.Stack{[]int{5,3,17,10,84,19,6,22,9}, 9, 9}
-	stack.HeapSort()
-	fmt.Println(stack)
+	var stack = heaps.Stack{[]int{5,13,2,25,7,17,20,8,4}, 9, 9}
+	stack.BuildMaxHeap()
+	fmt.Println(stack.HeapIncreaseKey(5,16))
 }
