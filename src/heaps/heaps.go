@@ -137,6 +137,9 @@ func (stack *Stack) HeapIncreaseKey(i, key int) (int, error) {
 	return key, nil
 }
 
+//var stack = heaps.Stack{[]int{5,13,2,25,7,17,20,8,4}, 9, 9}
+//stack.BuildMaxHeap()
+//stack.MaxHeapInsert(1)
 func (stack *Stack) MaxHeapInsert(key int) {
 	stack.Size++
 	stack.Length++
