@@ -2,6 +2,7 @@ package heaps
 
 import (
 	"errors"
+	"imath"
 )
 
 type Stack struct {
@@ -134,4 +135,11 @@ func (stack *Stack) HeapIncreaseKey(i, key int) (int, error) {
 		i = Parent(i)
 	}
 	return key, nil
+}
+
+func (stack *Stack) MaxHeapInsert(key int) {
+	stack.Size++
+	stack.Length++
+	stack.Heaps = append(stack.Heaps, imath.MinInt)
+	stack.HeapIncreaseKey(stack.Size-1, key)
 }
