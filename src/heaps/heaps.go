@@ -157,3 +157,6 @@ func (stack *Stack) HeapDelete(i int) bool {
 	stack.MaxHeapify(0)
 	return true
 }
+
+//6.5-9
+//四个最小堆链表，每次HeapExtractMin 组合成新有有序链表
