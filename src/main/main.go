@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"heaps"
+	"imath"
 )
 
 func main() {
-	var stack = heaps.Dstack{[]int{5,13,2,25,7,17,20,8,4}, 9, 9, 3}
-	stack.BuildDMaxHeap()
-	stack.DinsertKey(1, 12)
-	fmt.Println(stack)
+	max := imath.MaxInt
+	var young = heaps.Young{[][]int{{2,3,4,5},{8,9,12,14},{16,max,max,max},{max,max,max,max}}, 4, 4}
+	fmt.Println(young.IsYoung())
 }

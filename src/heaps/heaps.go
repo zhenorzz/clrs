@@ -234,3 +234,28 @@ func (stack *Dstack) DinsertKey(i, key int) error {
 	}
 	return nil
 }
+
+//young矩阵
+type Young struct {
+	Data [][]int
+	Row int
+	Col int
+}
+
+func (young *Young) IsYoung() bool {
+	for i := 0; i < young.Row; i++ {
+		for j := 0; j < young.Col - 1; j++ {
+			if young.Data[i][j] > young.Data[i][j+1] {
+				return false
+			}
+		}
+	}
+	for i := 0; i < young.Col; i++ {
+		for j := 0; j < young.Row - 1; j++ {
+			if young.Data[j][i] > young.Data[j+1][i] {
+				return false
+			}
+		}
+	}
+	return true
+}
