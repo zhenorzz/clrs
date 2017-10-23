@@ -122,19 +122,16 @@ func (stack *Stack) HeapExtractMax() (int, error) {
 //var stack = heaps.Stack{[]int{5,13,2,25,7,17,20,8,4}, 9, 9}
 //stack.BuildMaxHeap()
 //fmt.Println(stack.HeapIncreaseKey(5,16))
-func (stack *Stack) HeapIncreaseKey(i, key int) (int, error) {
+func (stack *Stack) HeapIncreaseKey(i, key int) error {
 	if key < stack.Heaps[i] {
-		return 0, errors.New("new key is smaller than current key")
+		return errors.New("new key is smaller than current key")
 	}
 	stack.Heaps[i] = key
-	if i == 0 {
-		return key, nil
-	}
 	for i > 0 &&stack.Heaps[Parent(i)] < stack.Heaps[i]  {
 		stack.Heaps[Parent(i)], stack.Heaps[i] = stack.Heaps[i], stack.Heaps[Parent(i)]
 		i = Parent(i)
 	}
-	return key, nil
+	return nil
 }
 
 //var stack = heaps.Stack{[]int{5,13,2,25,7,17,20,8,4}, 9, 9}
@@ -160,3 +157,80 @@ func (stack *Stack) HeapDelete(i int) bool {
 
 //6.5-9
 //四个最小堆链表，每次HeapExtractMin 组合成新有有序链表
+
+//D叉树
+type Dstack struct {
+	Heaps []int
+	Size int
+	Length int
+	Dary int
+}
+
+func (stack *Dstack) Dparent(i int) int {
+	return (i - 1) / stack.Dary
+}
+
+func (stack *Dstack) Dchild(k, i int) int {
+
+	return (i + 1) * stack.Dary - k % stack.Dary
+}
+
+//返回叶子结点的开始位置
+func (stack *Dstack) Dleaf(k, i int) int {
+	return (i + 1) * stack.Dary - k % stack.Dary
+}
+
+func (stack *Dstack) DMaxHeapify(i int) {
+	largest := i
+	for k := 0; k < stack.Dary; k++ {
+		child := stack.Dchild(k, i)
+		if child < stack.Size && stack.Heaps[child] > stack.Heaps[largest] {
+			largest = child
+		}
+	}
+	if largest != i {
+		stack.Heaps[i], stack.Heaps[largest] = stack.Heaps[largest], stack.Heaps[i]
+		stack.DMaxHeapify(largest)
+	}
+}
+
+func (stack *Dstack) BuildDMaxHeap() {
+	for i := 3 ; i >= 0 ; i-- {
+		stack.DMaxHeapify(i)
+	}
+}
+
+//去掉并返回stack中的最大元素
+func (stack *Dstack) DheapExtractMax() (int, error) {
+	if stack.Size < 1 {
+		return 0, errors.New("heap underflow")
+	}
+	max := stack.Heaps[0]
+	stack.Heaps[0] = stack.Heaps[stack.Size-1]
+	stack.Size--
+	stack.DMaxHeapify(0)
+	return max, nil
+}
+
+func (stack *Dstack) Dinsert(key int) {
+	stack.Heaps = append(stack.Heaps, key)
+	i := stack.Size
+	stack.Size++
+	stack.Length++
+	for i > 0 && stack.Heaps[stack.Dparent(i)] < stack.Heaps[i] {
+		stack.Heaps[stack.Dparent(i)], stack.Heaps[i] = stack.Heaps[i] ,stack.Heaps[stack.Dparent(i)]
+		i = stack.Dparent(i)
+	}
+}
+
+func (stack *Dstack) DinsertKey(i, key int) error {
+	if key < stack.Heaps[i] {
+		return errors.New("new key is smaller than current key")
+	}
+	stack.Heaps[i] = key
+	for i > 0 &&stack.Heaps[Parent(i)] < stack.Heaps[i]  {
+		stack.Heaps[Parent(i)], stack.Heaps[i] = stack.Heaps[i], stack.Heaps[Parent(i)]
+		i = Parent(i)
+	}
+	return nil
+}
