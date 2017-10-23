@@ -259,3 +259,29 @@ func (young *Young) IsYoung() bool {
 	}
 	return true
 }
+
+//判断越界
+func (young *Young) YoungExtractMin(i, j int) int {
+	min := young.Data[i][j]
+	if i+1 >= young.Row && j+1 >= young.Col {
+		young.Data[i][j] = imath.MaxInt
+		return min
+	}
+	if i+1 < young.Row && j+1 < young.Col && young.Data[i][j+1] == imath.MaxInt && young.Data[i+1][j] == imath.MaxInt {
+		young.Data[i][j] = imath.MaxInt
+		return min
+	}
+	if i+1 >= young.Row {
+		young.Data[i][j], young.Data[i][j+1] = young.Data[i][j+1], min
+		return young.YoungExtractMin(i ,j+1)
+	} else if j+1 >= young.Col {
+		young.Data[i][j], young.Data[i+1][j] = young.Data[i+1][j], min
+		return young.YoungExtractMin(i+1 ,j)
+	} else if i+1 >= young.Row || young.Data[i][j+1] < young.Data[i+1][j] {
+		young.Data[i][j], young.Data[i][j+1] = young.Data[i][j+1], min
+		return young.YoungExtractMin(i ,j+1)
+	} else {
+		young.Data[i][j], young.Data[i+1][j] = young.Data[i+1][j], min
+		return young.YoungExtractMin(i+1 ,j)
+	}
+}
