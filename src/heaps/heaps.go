@@ -146,3 +146,14 @@ func (stack *Stack) MaxHeapInsert(key int) {
 	stack.Heaps = append(stack.Heaps, imath.MinInt)
 	stack.HeapIncreaseKey(stack.Size-1, key)
 }
+
+//var stack = heaps.Stack{[]int{5,13,2,25,7,17,20,8,4}, 9, 9}
+//stack.BuildMaxHeap()
+//stack.HeapDelete(2)
+func (stack *Stack) HeapDelete(i int) bool {
+	stack.HeapIncreaseKey(i, imath.MaxInt)
+	stack.Size--
+	stack.Heaps[0] = stack.Heaps[stack.Size]
+	stack.MaxHeapify(0)
+	return true
+}
