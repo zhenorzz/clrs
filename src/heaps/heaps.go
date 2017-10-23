@@ -301,3 +301,7 @@ func (young *Young) YoungInsert(key int)  {
 		}
 	}
 }
+
+func (young *Young) YoungFind(key int)  {
+
+}
