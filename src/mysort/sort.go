@@ -1,4 +1,4 @@
-package mysort
+package  mysort
 
 //插入排序 非降序
 func InsertionAsc(s []int) []int {
