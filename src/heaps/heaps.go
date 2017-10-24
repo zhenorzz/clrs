@@ -3,7 +3,6 @@ package heaps
 import (
 	"errors"
 	"imath"
-	"fmt"
 )
 
 type Stack struct {
@@ -288,7 +287,7 @@ func (young *Young) YoungExtractMin(i, j int) int {
 }
 
 func (young *Young) YoungInsert(key int)  {
-	i:= young.Row-1
+	i := young.Row-1
 	j := young.Col-1
 	young.Data[i][j] = key
 	for (i > 0 && young.Data[i][j] < young.Data[i-1][j]) || (j > 0 && young.Data[i][j] < young.Data[i][j-1]) {
@@ -302,6 +301,31 @@ func (young *Young) YoungInsert(key int)  {
 	}
 }
 
-func (young *Young) YoungFind(key int)  {
+func (young *Young) YoungFind(key int) (int, int, bool) {
+	i := 0
+	j := 0
+	n := young.Row
+	m := young.Col
+	result := false
+	for young.Data[i][j] <= key && i < n {
+		if young.Data[i][j] == key {
+			result = true
+			break
+		} else {
+			i++
+		}
+	}
 
+	for i >= 0 && j < m && !result  {
+		if young.Data[i][j] == key {
+			result = true
+			break
+		}
+		if young.Data[i][j] < key {
+			j++
+		} else {
+			i--
+		}
+	}
+	return i, j, result
 }
