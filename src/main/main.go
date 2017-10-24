@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-	"heaps"
-	"imath"
+	"quick"
 )
 
 func main() {
-	max := imath.MaxInt
-	var young = heaps.Young{[][]int{{2,3,4,5},{8,9,12,14},{16,max,max,max},{max,max,max,max}}, 4, 4}
-	young.YoungInsert(1)
-	fmt.Println(young)
+ 	data := []int{13,19,9,5,12,8,7,4,21,2,6,11}
+	quick.Sort(data,0,11)
+	fmt.Println(data)
 }
