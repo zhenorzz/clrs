@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"quick"
+	"liner"
 )
 
 func main() {
- 	data := []int{11,19,9,5,12,8,7,4,11,2,6,21}
-	quick.Sort(data,0,11)
-	fmt.Println(data)
+ 	data := []int{6,0,2,0,1,3,4,6,1,3,2}
+	fmt.Println(liner.CountingSort(data,6))
 }
