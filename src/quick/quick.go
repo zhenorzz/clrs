@@ -1,6 +1,8 @@
 package quick
 
-import "imath"
+import (
+	"imath"
+)
 
 //data := []int{13,19,9,5,12,8,7,4,21,2,6,11}
 //quick.Sort(data,0,11)
@@ -38,4 +40,29 @@ func Sort(A []int, p, r int) {
 		Sort(A, p, q-1-left)
 		Sort(A, q+1+right, r)
 	}
+}
+
+//data := []int{2,2,2,2,2,2,2,2,2,2,2,2}
+func Hoare(A []int, p, r int) {
+	if p >= r{
+		return
+	}
+	x := A[p]
+	i := p
+	j := r
+	for {
+		for i < r && A[i] < x {
+			i++
+		}
+		for j > p && A[j] >= x {
+			j--
+		}
+		if i < j {
+			A[i], A[j] = A[j], A[i]
+		} else {
+			break
+		}
+	}
+	Hoare(A, p, j)
+	Hoare(A, j+1, r)
 }
