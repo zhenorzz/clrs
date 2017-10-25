@@ -22,23 +22,16 @@ func Sort(A []int, p, r int) {
 		}
 		A[i+1], A[r] = A[r], A[i+1]
 		q := i+1
-		left, right := 0, 0
-		//左边聚集 key
+		left := 0
+		//聚集 key
 		for i = q - 1; i >= p; i-- {
 			if A[i] == x {
 				A[q-1-left], A[i] = A[i], A[q-1-left]
 				left++
 			}
 		}
-		//右边聚集 key
-		for i = q + 1; i <= r; i++ {
-			if A[i] == x {
-				A[q+1+right], A[i] = A[i], A[q+1+right]
-				right++
-			}
-		}
 		Sort(A, p, q-1-left)
-		Sort(A, q+1+right, r)
+		Sort(A, q+1, r)
 	}
 }
 
@@ -51,6 +44,7 @@ func Hoare(A []int, p, r int) {
 	i := p
 	j := r
 	for {
+		j--
 		for i < r && A[i] < x {
 			i++
 		}
