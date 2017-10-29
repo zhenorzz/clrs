@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
- 	data := []int{329,457,657,839,436,720,355}
-	fmt.Println(liner.RadixSort(data,10,3))
+	data := []int{6,0,2,0,1,3,4,6,1,3,2}
+	liner.CountingSortInPlace(data,10)
+	fmt.Println(data)
 }

@@ -1,5 +1,6 @@
 package liner
 
+import "fmt"
 
 //data := []int{6,0,2,0,1,3,4,6,1,3,2}
 //fmt.Println(liner.CountingSort(data,6))
@@ -49,4 +50,39 @@ func RadixSort(A []int, d, k int) []int {
 		A = B
 	}
 	return A
+}
+
+func CountingSortInPlace(A []int, k int) {
+	fmt.Println(A)
+	counts := make([]int, k+1)
+	n := len(A)
+	for i := 0; i < n; i++ {
+		counts[A[i]]++
+	}
+	fmt.Println(counts)
+	for val, sum := 0, 0; val < k+1; val++ {
+		temp := counts[val]
+		counts[val] = sum
+		sum += temp
+	}
+	fmt.Println(counts)
+	for i := n - 1; i >= 0; i-- {
+		val := A[i]
+		j := counts[val]
+		if j < i {
+			// Process a fresh cycle. Since the index 'i' moves
+			// downward and the counts move upward, it is
+			// guaranteed that a value is never moved twice.
+			for {
+				counts[val]++
+				val, A[j] = A[j], val
+				j = counts[val]
+				if j >= i {
+					break
+				}
+			}
+			A[i] = val
+		}
+
+	}
 }
