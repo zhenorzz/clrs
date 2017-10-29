@@ -1,5 +1,9 @@
 package choose
 
+import (
+	"imath"
+)
+
 func FindMinAndMax(A []int) (min, max int) {
 	n := len(A)
 	start := 0
@@ -32,4 +36,37 @@ func FindMinAndMax(A []int) (min, max int) {
 		}
 	}
 	return
+}
+
+func RandomizedSelect(A []int, p, r, i int) int {
+	//只存在一个元素i=0
+	if p == r {
+		return A[p]
+	}
+	q := RandomizePartition(A, p, r)
+	k := q - p
+	if i == k {
+		return A[q]
+	} else if i < k {
+		return RandomizedSelect(A, p, q-1, i)
+	} else {
+		return RandomizedSelect(A, q+1, r, i-k-1)
+	}
+}
+
+func RandomizePartition(A []int, p, r int) int {
+	random := imath.Randomize(p, r)
+	A[r], A[random] = A[random], A[r]
+	x := A[r]
+	i := p - 1
+	//分两边
+	for j := p; j < r; j++ {
+		if A[j] <= x {
+			i++
+			A[i], A[j] = A[j], A[i]
+		}
+	}
+	A[i+1], A[r] = A[r], A[i+1]
+	q := i+1
+	return q
 }
