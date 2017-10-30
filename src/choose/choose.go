@@ -7,7 +7,7 @@ import (
 func FindMinAndMax(A []int) (min, max int) {
 	n := len(A)
 	start := 0
-	if n % 2 == 0 {
+	if n%2 == 0 {
 		start = 2
 		if A[0] < A[1] {
 			min = A[0]
@@ -38,6 +38,8 @@ func FindMinAndMax(A []int) (min, max int) {
 	return
 }
 
+//data := []int{6,0,2,0,1,3,4,6,1,3,2}
+//fmt.Println(data, choose.RandomizedSelect(data,0,10,10))
 func RandomizedSelect(A []int, p, r, i int) int {
 	//只存在一个元素i=0
 	if p == r {
@@ -54,6 +56,26 @@ func RandomizedSelect(A []int, p, r, i int) int {
 	}
 }
 
+func RandomizedSelectLoop(A []int, p, r, i int) int {
+	//只存在一个元素i=0
+	if p == r {
+		return A[p]
+	}
+	for p < r {
+		q := RandomizePartition(A, p, r)
+		k := q - p
+		if i == k {
+			return A[q]
+		} else if i < k {
+			r = q - 1
+		} else {
+			p = q + 1
+			i = i - k - 1
+		}
+	}
+	return A[p]
+}
+
 func RandomizePartition(A []int, p, r int) int {
 	random := imath.Randomize(p, r)
 	A[r], A[random] = A[random], A[r]
@@ -67,6 +89,6 @@ func RandomizePartition(A []int, p, r int) int {
 		}
 	}
 	A[i+1], A[r] = A[r], A[i+1]
-	q := i+1
+	q := i + 1
 	return q
 }
