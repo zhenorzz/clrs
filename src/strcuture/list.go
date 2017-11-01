@@ -18,9 +18,11 @@ type List struct {
 //wait := L.Search(3)
 //L.Delete(wait)
 //fmt.Println(L.Search(3))
+
 func (L *List) Search(k int) *Node {
 	x := L.Nil.Next
-	for x != L.Nil && x.Key != k{
+	L.Nil.Key = k
+	for x.Key != k{
 		x = x.Next
 	}
 	return x
