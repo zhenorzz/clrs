@@ -2,10 +2,20 @@ package main
 
 import (
 	"fmt"
-	"choose"
+	"strcuture"
 )
 
 func main() {
-	data := []int{6,0,2,0,1,3,4,6,1,3,2}
-	fmt.Println(data, choose.RandomizedSelectLoop(data,0,10,10))
+	var stack = strcuture.Queue{
+		Head: 0,
+		Tail: 0,
+		Key: make([]int,9),
+		Length:9}
+	stack.Enqueue(4)
+	stack.Enqueue(1)
+	stack.Enqueue(3)
+	x1 := stack.Dequeue()
+	stack.Enqueue(8)
+	x2 := stack.Dequeue()
+	fmt.Println(x1, x2, stack)
 }
