@@ -24,25 +24,6 @@ func (T *Tree) Insert(x int) {
 	}
 }
 
-func (T *Tree) Delete(k *Tree) {
-
-}
-
-func (T *Tree) Search(x int) *Tree {
-	p := T
-	for {
-		if p.Key == x {
-			return p
-		} else if p.Left != nil {
-			p = p.Left
-		} else if p.Right != nil {
-			p = p.Right
-		} else {
-			return nil
-		}
-	}
-}
-
 func (T *Tree) Traverse() {
 	fmt.Println(T)
 	if T.Left != nil {
@@ -50,6 +31,26 @@ func (T *Tree) Traverse() {
 	}
 	if T.Right != nil {
 		T.Right.Traverse()
+	}
+}
+
+func (T *Tree) Search(x int) *Tree {
+	p := T
+	for p != nil {
+		if p.Key == x {
+			return p
+		} else if x < p.Key {
+			p = p.Left
+		} else {
+			p = p.Right
+		}
+	}
+	return nil
+}
+
+func (T *Tree) Delete(k *Tree) {
+	if k.Root != nil {
+		k.Root.Left = k.Left
 	}
 }
 

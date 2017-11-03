@@ -2,6 +2,7 @@ package main
 
 import (
 	"strcuture"
+	"fmt"
 )
 
 func main() {
@@ -10,4 +11,6 @@ func main() {
 	root.Insert(11)
 	root.Insert(21)
 	root.Traverse()
+	root.Traverse()
+	fmt.Println(root.Search(18))
 }
