@@ -11,6 +11,7 @@ func main() {
 	root.Insert(11)
 	root.Insert(21)
 	root.Traverse()
-	root.Traverse()
-	fmt.Println(root.Search(18))
+	node := root.Search(18)
+	root.Delete(node)
+	fmt.Println(root.Search(21))
 }
