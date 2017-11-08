@@ -43,16 +43,14 @@ func (T *Tree) Traverse() {
 
 func (T *Tree) Search(x int) *Tree {
 	p := T
-	for p != nil {
-		if p.Key == x {
-			return p
-		} else if x < p.Key {
+	for p != nil && p.Key == x {
+		if x < p.Key {
 			p = p.Left
 		} else {
 			p = p.Right
 		}
 	}
-	return nil
+	return p
 }
 
 //二叉搜索树的结点删除比插入较为复杂，总体来说，结点的删除可归结为三种情况：
