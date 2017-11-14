@@ -43,7 +43,7 @@ func (T *Tree) Traverse() {
 
 func (T *Tree) Search(x int) *Tree {
 	p := T
-	for p != nil && p.Key == x {
+	for p != nil && p.Key != x {
 		if x < p.Key {
 			p = p.Left
 		} else {
@@ -96,6 +96,48 @@ func (T *Tree) Delete(k *Tree) {
 			k.Key = p.Key
 		}
 	}
+}
+
+func (T *Tree) Minimum() *Tree {
+	p := T
+	for p.Left != nil {
+		p = p.Left
+	}
+	return p
+}
+
+func (T *Tree) Maximum() *Tree {
+	p := T
+	for p.Right != nil {
+		p = p.Right
+	}
+	return p
+}
+
+func (T *Tree) Successor() *Tree {
+	p := T
+	if p.Right != nil {
+		return p.Right.Minimum()
+	}
+	y := p.Root
+	for y != nil && p == y.Right {
+		p = y
+		y = y.Root
+	}
+	return y
+}
+
+func (T *Tree) Predecessor() *Tree {
+	p := T
+	if p.Left != nil {
+		return p.Left.Maximum()
+	}
+	y := p.Root
+	for y != nil && p == y.Left {
+		p = y
+		y = y.Root
+	}
+	return y
 }
 
 //func (T Tree) String() string {
