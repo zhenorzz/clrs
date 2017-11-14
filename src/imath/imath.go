@@ -15,3 +15,10 @@ func Randomize(min, max int) int {
 	rand.Seed(time.Now().Unix())
 	return rand.Intn(max - min) + min
 }
+
+func Max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
