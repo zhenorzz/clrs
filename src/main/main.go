@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(dynamic.BottomUpCutRod(40))
+	fmt.Println(dynamic.DynFib(300))
 }

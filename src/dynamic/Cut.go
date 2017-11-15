@@ -52,3 +52,21 @@ func BottomUpCutRod(n int) int {
 	}
 	return r[n]
 }
+
+func Fib(n int) int {
+	if n <= 1 {
+		return 1
+	}
+	return Fib(n-1) + Fib(n-2)
+}
+
+func DynFib(n int) int {
+	if n <= 1 {
+		return 1
+	}
+	a, b := 1, 1
+	for i := 2; i <= n; i++ {
+		a, b = b, a + b
+	}
+	return b
+}
