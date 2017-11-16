@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"dynamic"
 )
 
 func main() {
-	fmt.Println(dynamic.DynFib(300))
+	dynamic.MatrixChainOrder([]int{5,10,3,12,5,50,6})
 }
