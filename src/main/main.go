@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	dynamic.MatrixChainOrder([]int{5,10,3,12,5,50,6})
+	dynamic.Length([]int{1,0,0,1,0,1,0,1},[]int{0,1,0,1,1,0,1,1,0})
 }
