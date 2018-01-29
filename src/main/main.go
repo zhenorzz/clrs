@@ -1,9 +1,12 @@
 package main
 
 import (
-	"dynamic"
+	"quick"
+	"fmt"
 )
 
 func main() {
-	dynamic.Length([]int{1,0,0,1,0,1,0,1},[]int{0,1,0,1,1,0,1,1,0})
+	data := []int{8,19,9,5,8,8,7,4,21,2,6,11}
+	quick.Sort(data,0,11)
+	fmt.Println(data)
 }

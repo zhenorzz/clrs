@@ -2,6 +2,8 @@ package dynamic
 
 import "fmt"
 
+//dynamic.Length([]int{1,0,0,1,0,1,0,1},[]int{0,1,0,1,1,0,1,1,0})
+
 func Length(X, Y []int) {
 	m := len(X) + 1
 	n := len(Y) + 1

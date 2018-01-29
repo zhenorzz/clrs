@@ -8,7 +8,7 @@ import (
 //quick.Sort(data,0,11)
 //fmt.Println(data)
 func Sort(A []int, p, r int) {
-	if p < r {
+	if p < r && len(A) >= (p-r) {
 		random := imath.Randomize(p, r)
 		A[r], A[random] = A[random], A[r]
 		x := A[r]
@@ -20,8 +20,8 @@ func Sort(A []int, p, r int) {
 				A[i], A[j] = A[j], A[i]
 			}
 		}
-		A[i+1], A[r] = A[r], A[i+1]
-		q := i+1
+		q := i + 1
+		A[q], A[r] = A[r], A[q]
 		left := 0
 		//聚集 key
 		for i = q - 1; i >= p; i-- {
@@ -37,7 +37,7 @@ func Sort(A []int, p, r int) {
 
 //data := []int{2,2,2,2,2,2,2,2,2,2,2,2}
 func Hoare(A []int, p, r int) {
-	if p >= r{
+	if p >= r {
 		return
 	}
 	x := A[p]

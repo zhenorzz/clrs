@@ -5,6 +5,7 @@ import (
 	"imath"
 	"strconv"
 )
+
 //dynamic.MatrixChainOrder([]int{5,10,3,12,5,50,6})
 func MatrixChainOrder(p []int) {
 	n := len(p)
@@ -13,7 +14,6 @@ func MatrixChainOrder(p []int) {
 	for i := 0; i < n; i++ {
 		m[i] = make([]int, n)
 		s[i] = make([]int, n)
-		m[i][i] = 0
 	}
 	for l := 2; l < n; l++ {
 		for i := 1; i < n-l+1; i++ {
@@ -32,7 +32,7 @@ func MatrixChainOrder(p []int) {
 	fmt.Println(matrix)
 }
 
-func PrintOptimalParens(s [][]int, i, j int) (matrix string){
+func PrintOptimalParens(s [][]int, i, j int) (matrix string) {
 	if i == j {
 		matrix += "A" + strconv.Itoa(i)
 	} else {
