@@ -1,4 +1,4 @@
-package C02_Getting_Started
+package C02_1_Insertion_Sort
 
 import (
 	"testing"

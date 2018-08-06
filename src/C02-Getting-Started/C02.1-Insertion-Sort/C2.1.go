@@ -1,4 +1,4 @@
-package C02_Getting_Started
+package C02_1_Insertion_Sort
 
 func Asc(numbers []int) {
 	for current := 1; current < len(numbers); current++ {

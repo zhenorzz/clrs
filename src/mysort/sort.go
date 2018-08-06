@@ -1,33 +1,35 @@
 package mysort
 
-import "imath"
+import (
+	"imath"
+	"fmt"
+)
 
 //插入排序 非降序
-func InsertionAsc(s []int) []int {
+func InsertionAsc(s []int) {
 	for j := 1; j < len(s); j++ {
-		key := s[j]
-		i := j - 1
-		for i >= 0 && s[i] > key {
+		value, i := s[j], j - 1
+		for i >= 0 && s[i] > value {
 			s[i+1] = s[i]
 			i--
 		}
-		s[i+1] = key
+		s[i+1] = value
 	}
-	return s
+	fmt.Println(s)
 }
 
 //插入排序 非升序
-func InsertionDesc(s []int) []int {
+func InsertionDesc(s []int) {
 	for j := 1; j < len(s); j++ {
-		key := s[j]
+		value := s[j]
 		i := j - 1
-		for i >= 0 && s[i] < key {
+		for i >= 0 && s[i] < value {
 			s[i+1] = s[i]
 			i--
 		}
-		s[i+1] = key
+		s[i+1] = value
 	}
-	return s
+	fmt.Println(s)
 }
 
 //递归插入排序 非降序

@@ -1,12 +1,12 @@
-package C02_Getting_Started
+package C02_1_Insertion_Sort
 
 import (
 	"testing"
 	"fmt"
 )
 
-func TestDesc(t *testing.T) {
+func TestAsc(t *testing.T) {
 	numbers := []int{5, 2, 4, 6, 1, 3}
-	Desc(numbers)
+	Asc(numbers)
 	fmt.Println(numbers)
 }
