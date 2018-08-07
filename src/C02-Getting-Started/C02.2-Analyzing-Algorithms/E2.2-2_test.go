@@ -1,4 +1,4 @@
-package C02_1_Insertion_Sort
+package C02_2_Analyzing_Algorithms
 
 import (
 	"testing"

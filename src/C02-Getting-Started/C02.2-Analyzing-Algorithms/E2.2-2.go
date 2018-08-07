@@ -1,4 +1,4 @@
-package C02_1_Insertion_Sort
+package C02_2_Analyzing_Algorithms
 
 func SelectionSort(numbers []int) {
 	for i := 0; i < len(numbers)-1; i++ {
