@@ -6,7 +6,7 @@ import (
 )
 
 func TestMergeSort(t *testing.T) {
-	numbers := []int{5, 2, 4, 6, 1}
+	numbers := []int{2, 3, 8, 6, 1}
 	MergeSort(numbers, 0, 4)
 	fmt.Println(numbers)
 }

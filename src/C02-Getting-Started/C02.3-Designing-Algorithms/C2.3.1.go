@@ -1,6 +1,8 @@
 package C02_3_Designing_Algorithms
 
-import "imath"
+import (
+	"imath"
+)
 
 func merge(A []int, p, q, r int) {
 	n1, n2 := q-p+1, r-q
