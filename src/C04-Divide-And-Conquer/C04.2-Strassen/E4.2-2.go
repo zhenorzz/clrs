@@ -25,13 +25,13 @@ func Strassen(A [][]int, B [][]int) [][]int {
 	C12 := make([][]int, size)
 	C21 := make([][]int, size)
 	C22 := make([][]int, size)
-	M1 := make([][]int, size)
-	M2 := make([][]int, size)
-	M3 := make([][]int, size)
-	M4 := make([][]int, size)
-	M5 := make([][]int, size)
-	M6 := make([][]int, size)
-	M7 := make([][]int, size)
+	P1 := make([][]int, size)
+	P2 := make([][]int, size)
+	P3 := make([][]int, size)
+	P4 := make([][]int, size)
+	P5 := make([][]int, size)
+	P6 := make([][]int, size)
+	P7 := make([][]int, size)
 	AA := make([][]int, size)
 	BB := make([][]int, size)
 	for i := 0; i < size; i++ {
@@ -50,13 +50,13 @@ func Strassen(A [][]int, B [][]int) [][]int {
 		C21[i] = make([]int, size)
 		C22[i] = make([]int, size)
 
-		M1[i] = make([]int, size)
-		M2[i] = make([]int, size)
-		M3[i] = make([]int, size)
-		M4[i] = make([]int, size)
-		M5[i] = make([]int, size)
-		M6[i] = make([]int, size)
-		M7[i] = make([]int, size)
+		P1[i] = make([]int, size)
+		P2[i] = make([]int, size)
+		P3[i] = make([]int, size)
+		P4[i] = make([]int, size)
+		P5[i] = make([]int, size)
+		P6[i] = make([]int, size)
+		P7[i] = make([]int, size)
 		AA[i] = make([]int, size)
 		BB[i] = make([]int, size)
 		for j := 0; j < size; j++ {
@@ -71,48 +71,48 @@ func Strassen(A [][]int, B [][]int) [][]int {
 			B22[i][j] = B[i+size][j+size]
 		}
 	}
-	//M1 = (A11 + A22) x (B11 + B22)
+	//P1 = (A11 + A22) x (B11 + B22)
 	AA = matrixAdd(A11, A22)
 	BB = matrixAdd(B11, B22)
-	M1 = Strassen(AA, BB)
+	P1 = Strassen(AA, BB)
 
-	//M2 = (A21 + A22) x B11
+	//P2 = (A21 + A22) x B11
 	AA = matrixAdd(A21, A22)
-	M2 = Strassen(AA, B11)
+	P2 = Strassen(AA, B11)
 
-	//M3=A11(B12-B22)
+	//P3=A11(B12-B22)
 	BB = matrixSub(B12, B22)
-	M3 = Strassen(A11, BB)
+	P3 = Strassen(A11, BB)
 
-	//M4=A22(B21-B11)
+	//P4=A22(B21-B11)
 	BB = matrixSub(B21, B11)
-	M4 = Strassen(A22, BB)
+	P4 = Strassen(A22, BB)
 
-	//M5=(A11+A12)B22
+	//P5=(A11+A12)B22
 	AA = matrixAdd(A11, A12)
-	M5 = Strassen(AA, B22)
+	P5 = Strassen(AA, B22)
 
-	//M6=(A21-A11)(B11+B12)
+	//P6=(A21-A11)(B11+B12)
 	AA = matrixSub(A21, A11)
 	BB = matrixAdd(B11, B12)
-	M6 = Strassen(AA, BB)
+	P6 = Strassen(AA, BB)
 
-	//M7=(A12-A22)(B21+B22)
+	//P7=(A12-A22)(B21+B22)
 	AA = matrixSub(A12, A22)
 	BB = matrixAdd(B21, B22)
-	M7 = Strassen(AA, BB)
+	P7 = Strassen(AA, BB)
 
-	//C11 = M1 + M4 - M5 + M7
-	C11 = matrixAdd(matrixAdd(M1, M4), matrixSub(M7, M5))
+	//C11 = P1 + P4 - P5 + P7
+	C11 = matrixAdd(matrixAdd(P1, P4), matrixSub(P7, P5))
 
-	//C12 = M3 + M5
-	C12 = matrixAdd(M3, M5)
+	//C12 = P3 + P5
+	C12 = matrixAdd(P3, P5)
 
-	//C21 = M2 + M4
-	C21 = matrixAdd(M2, M4)
+	//C21 = P2 + P4
+	C21 = matrixAdd(P2, P4)
 
-	//C22 = M1 + M3 - M2 + M6
-	C22 = matrixAdd(matrixSub(M1, M2), matrixAdd(M3, M6))
+	//C22 = P1 + P3 - P2 + P6
+	C22 = matrixAdd(matrixSub(P1, P2), matrixAdd(P3, P6))
 
 	for i := 0; i < size; i++ {
 		for j := 0; j < size; j++ {
