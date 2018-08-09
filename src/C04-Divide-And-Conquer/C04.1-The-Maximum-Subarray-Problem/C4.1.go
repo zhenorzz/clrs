@@ -25,7 +25,7 @@ func findMaxCrossingSubarray(A []int, low, mid, high int) (maxLeft, maxRight, to
 	return
 }
 
-func FindMaximumSubarray(A []int, low, high int) (int, int, int) {
+func FindMaximumSubarray(A []int, low, high int) (int, int, int) {	
 	if high == low {
 		return low, high, A[low]
 	}

@@ -82,7 +82,7 @@ func Strassen(A [][]int, B [][]int, size int) [][]int {
 			AA[i] = make([]int, size)
 			BB[i] = make([]int, size)
 		}
-		//splitting input Matrixes, into 4 submatrices each.
+		//splitting input Matrices, into 4 submatrices each.
 		for i := 0; i < size; i++ {
 			for j := 0; j < size; j++ {
 				A11[i][j] = A[i][j]
