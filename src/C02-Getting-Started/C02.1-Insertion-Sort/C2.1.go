@@ -1,13 +1,13 @@
 package C02_1_Insertion_Sort
 
-func Asc(numbers []int) {
-	for current := 1; current < len(numbers); current++ {
-		currentValue := numbers[current]
-		prev := current - 1
-		for prev >= 0 && numbers[prev] > currentValue {
-			numbers[prev+1] = numbers[prev]
-			prev--
+func Asc(A []int) {
+	for i := 1; i < len(A); i++ {
+		currentValue := A[i]
+		j := i - 1
+		for j >= 0 && A[j] > currentValue {
+			A[j+1] = A[j]
+			j--
 		}
-		numbers[prev+1] = currentValue
+		A[j+1] = currentValue
 	}
 }
