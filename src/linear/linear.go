@@ -1,4 +1,4 @@
-package liner
+package linear
 
 import "fmt"
 
@@ -8,7 +8,7 @@ func CountingSort(A []int, k int) []int {
 	//下标从0开始 所以区间范围要加1
 	k++
 	C := make([]int, k)
-	B := make([]int,len(A))
+	B := make([]int, len(A))
 	for i := 0; i < len(A); i++ {
 		C[A[i]]++
 	}
@@ -16,7 +16,7 @@ func CountingSort(A []int, k int) []int {
 	for i := 1; i < k; i++ {
 		C[i] += C[i-1]
 	}
-	for i := len(A)-1; i >=0 ; i-- {
+	for i := len(A) - 1; i >= 0; i-- {
 		C[A[i]]--
 		B[C[A[i]]] = A[i]
 	}
@@ -28,10 +28,10 @@ func CountingSort(A []int, k int) []int {
 func RadixSort(A []int, d, k int) []int {
 	x := 1
 	for k > 0 {
-		t := make([]int,len(A))
-		B := make([]int,len(A))
+		t := make([]int, len(A))
+		B := make([]int, len(A))
 		for i := 0; i < len(A); i++ {
-			t[i] = A[i]%(x*10)/x
+			t[i] = A[i] % (x * 10) / x
 		}
 		x *= 10
 		C := make([]int, d)
@@ -42,7 +42,7 @@ func RadixSort(A []int, d, k int) []int {
 		for i := 1; i < d; i++ {
 			C[i] += C[i-1]
 		}
-		for i := len(A)-1; i >=0 ; i-- {
+		for i := len(A) - 1; i >= 0; i-- {
 			C[t[i]]--
 			B[C[t[i]]] = A[i]
 		}
